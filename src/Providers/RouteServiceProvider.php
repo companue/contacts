@@ -11,6 +11,13 @@ class RouteServiceProvider extends ServiceProvider
 
     public function map()
     {
-        Route::namespace($this->namespace)->group(__DIR__ . '/../../routes/web.php');
+        Route::namespace($this->namespace)
+            ->middleware('web')
+            ->group(__DIR__ . '/../../routes/web.php');
+
+        Route::namespace($this->namespace)
+            ->middleware('api')
+            ->prefix('api')
+            ->group(__DIR__ . '/../../routes/api.php');
     }
 }
