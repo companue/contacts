@@ -1,6 +1,21 @@
 {
     "name": "companue/package-skeleton",
     "description": "This is a laravel package for ...",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "mimalefdal",
+            "email": "mimalefdal@tarasheafzar.ir"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "illuminate/support": "^10.0|^11.0|^12.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^10.0"
+    },
     "autoload": {
         "psr-4": {
             "Companue\\PackageSkeleton\\": "src/"
@@ -10,16 +25,6 @@
         "psr-4": {
             "Companue\\PackageSkeleton\\Tests\\": "tests/"
         }
-    },
-    "authors": [
-        {
-            "name": "mimalefdal",
-            "email": "mimalefdal@tarasheafzar.ir"
-        }
-    ],
-    "require": {},
-    "require-dev": {
-        "orchestra/testbench": "^7.13"
     },
     "extra": {
         "laravel": {
@@ -31,5 +36,7 @@
                 "PackageSkeleton": "Companue\\PackageSkeleton\\Facades\\PackageSkeleton"
             }
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
