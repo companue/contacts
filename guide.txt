@@ -1,19 +1,19 @@
 1.Search and replace
-    package-skeleton
+    contacts
 with
     [your-package-name]
 
 2.Search and replace
-    PackageSkeleton
+    Contacts
 with
     [YourPackageName]
 
 3.Rename these files to {YourPackageName.php}
-    src/PackageSkeleton.php
-    src/Facades/PackageSkeleton.php
+    src/Contacts.php
+    src/Facades/Contacts.php
 
 4.Rename these files to {your-package-name.php}
-    config/package-skeleton.php
+    config/contacts.php
 
 6.run "composer install"
 

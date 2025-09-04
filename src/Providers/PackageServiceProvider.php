@@ -1,17 +1,22 @@
 <?php
 
-namespace Companue\PackageSkeleton\Providers;
+namespace Companue\Contacts\Providers;
 
-use Companue\PackageSkeleton\PackageSkeleton;
+use Companue\Contacts\Contacts;
 use Illuminate\Support\ServiceProvider;
 
 class PackageServiceProvider extends ServiceProvider
 {
     public function boot()
     {
+        // Ensure parent boot is called for compatibility
+        if (method_exists(parent::class, 'boot')) {
+            parent::boot();
+        }
+
         $this->loadViewsFrom(
             $this->basePath('resources/views/'),
-            'package-skeleton'
+            'contacts'
         );
 
         $this->loadMigrationsFrom(
@@ -20,7 +25,7 @@ class PackageServiceProvider extends ServiceProvider
 
         $this->loadTranslationsFrom(
             $this->basePath('lang'),
-            'package-skeleton'
+            'contacts'
         );
 
         $this->loadJsonTranslationsFrom(
@@ -28,27 +33,27 @@ class PackageServiceProvider extends ServiceProvider
         );
 
         $this->publishes([
-            $this->basePath('lang') => base_path('lang/vendor/package-skeleton')
-        ], 'package-skeleton-translations');
+            $this->basePath('lang') => base_path('lang/vendor/contacts')
+        ], 'contacts-translations');
 
         $this->publishes([
             $this->basePath('database/migrations') => database_path('migrations')
-        ], 'package-skeleton-migrations');
+        ], 'contacts-migrations');
 
         $this->publishes([
-            $this->basePath('resources/views/') => resource_path('views/vendor/package-skeleton')
-        ], 'package-skeleton-views');
+            $this->basePath('resources/views/') => resource_path('views/vendor/contacts')
+        ], 'contacts-views');
 
         $this->publishes(
             [
-                $this->basePath('config/package-skeleton.php') => base_path('config/package-skeleton.php')
+                $this->basePath('config/contacts.php') => base_path('config/contacts.php')
             ],
-            'package-skeleton-configuration'
+            'contacts-configuration'
         );
 
         $this->publishes([
-            $this->basePath('/resources/static') => public_path('vendor/package-skeleton')
-        ], 'package-skeleton-assets');
+            $this->basePath('/resources/static') => public_path('vendor/contacts')
+        ], 'contacts-assets');
 
         if ($this->app->runningInConsole()) {
             $this->commands([
@@ -59,11 +64,11 @@ class PackageServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->app->bind('package-skeleton', function () {
-            return new PackageSkeleton;
+        $this->app->bind('contacts', function () {
+            return new Contacts;
         });
 
-        $this->mergeConfigFrom($this->basePath('config/package-skeleton.php'), 'package-skeleton');
+        $this->mergeConfigFrom($this->basePath('config/contacts.php'), 'contacts');
     }
 
     protected function basePath($path = '')

@@ -1,12 +1,12 @@
 {
-    "name": "companue/package-skeleton",
-    "description": "This is a laravel package for ...",
+    "name": "companue/contacts",
+    "description": "This is a companue package for managing contacts including customers, vendors, and any other.",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
             "name": "mimalefdal",
-            "email": "mimalefdal@tarasheafzar.ir"
+            "email": "mimalefdal@gmail.com"
         }
     ],
     "require": {
@@ -18,22 +18,22 @@
     },
     "autoload": {
         "psr-4": {
-            "Companue\\PackageSkeleton\\": "src/"
+            "Companue\\Contacts\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Companue\\PackageSkeleton\\Tests\\": "tests/"
+            "Companue\\Contacts\\Tests\\": "tests/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Companue\\PackageSkeleton\\Providers\\PackageServiceProvider",
-                "Companue\\PackageSkeleton\\Providers\\RouteServiceProvider"
+                "Companue\\Contacts\\Providers\\PackageServiceProvider",
+                "Companue\\Contacts\\Providers\\RouteServiceProvider"
             ],
             "aliases": {
-                "PackageSkeleton": "Companue\\PackageSkeleton\\Facades\\PackageSkeleton"
+                "Contacts": "Companue\\Contacts\\Facades\\Contacts"
             }
         }
     },
