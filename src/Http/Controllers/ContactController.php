@@ -31,10 +31,27 @@ class ContactController extends Controller
 
     public function store(ContactStoreRequest $request)
     {
-        $contact = Contact::create($request->all());
+        // $contact = Contact::create($request->all());
+        // return Response::json([
+        //     'message' => Lang::get('messages.recordـcreated_with_types', ['title' => $contact->id, 'type' => 'مخاطب', 'titletype' => 'شماره']),
+        //     'contact' => new ContactItem($contact)
+        // ]);
+
+        $data = $request->all();
+        $details = $data['contact_details'] ?? null;
+        unset($data['contact_details']);
+
+        $contact = Contact::create($data);
+
+        if ($details) {
+            foreach ($details as $detail) {
+                $contact->details()->create($detail);
+            }
+        }
+
         return Response::json([
             'message' => Lang::get('messages.recordـcreated_with_types', ['title' => $contact->id, 'type' => 'مخاطب', 'titletype' => 'شماره']),
-            'contact' => new ContactItem($contact)
+            'contact' => new ContactDisplayItem($contact)
         ]);
     }
 
