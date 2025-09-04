@@ -9,50 +9,34 @@ class PackageServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        // Ensure parent boot is called for compatibility
-        if (method_exists(parent::class, 'boot')) {
-            parent::boot();
-        }
+        $this->loadViewsFrom($this->basePath('resources/views/'), 'contacts');
+        $this->loadMigrationsFrom($this->basePath('database/migrations'));
+        $this->loadTranslationsFrom($this->basePath('lang'), 'contacts');
+        $this->loadJsonTranslationsFrom($this->basePath('lang/json'));
 
-        $this->loadViewsFrom(
-            $this->basePath('resources/views/'),
-            'contacts'
-        );
-
-        $this->loadMigrationsFrom(
-            $this->basePath('database/migrations')
-        );
-
-        $this->loadTranslationsFrom(
-            $this->basePath('lang'),
-            'contacts'
-        );
-
-        $this->loadJsonTranslationsFrom(
-            $this->basePath('lang/json')
-        );
-
+        // Publish migrations
         $this->publishes([
-            $this->basePath('lang') => base_path('lang/vendor/contacts')
-        ], 'contacts-translations');
-
-        $this->publishes([
-            $this->basePath('database/migrations') => database_path('migrations')
+            $this->basePath('database/migrations') => database_path('migrations'),
         ], 'contacts-migrations');
 
+        // Publish translations
         $this->publishes([
-            $this->basePath('resources/views/') => resource_path('views/vendor/contacts')
+            $this->basePath('lang') => base_path('lang/vendor/contacts'),
+        ], 'contacts-translations');
+
+        // Publish views
+        $this->publishes([
+            $this->basePath('resources/views/') => resource_path('views/vendor/contacts'),
         ], 'contacts-views');
 
-        $this->publishes(
-            [
-                $this->basePath('config/contacts.php') => base_path('config/contacts.php')
-            ],
-            'contacts-configuration'
-        );
-
+        // Publish config
         $this->publishes([
-            $this->basePath('/resources/static') => public_path('vendor/contacts')
+            $this->basePath('config/contacts.php') => base_path('config/contacts.php'),
+        ], 'contacts-configuration');
+
+        // Publish assets
+        $this->publishes([
+            $this->basePath('resources/static') => public_path('vendor/contacts'),
         ], 'contacts-assets');
 
         if ($this->app->runningInConsole()) {
