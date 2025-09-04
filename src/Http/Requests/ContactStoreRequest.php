@@ -22,6 +22,15 @@ class ContactStoreRequest extends FormRequest
             'brand_lastname' => 'nullable|string|max:255',
             'national_code' => 'nullable|string|max:20|unique:contacts,national_code',
             'creator_id' => 'nullable|integer',
+
+            // Accept an array of contact_details
+            'contact_details' => 'array',
+            'contact_details.*.detail_title' => 'required|string|max:255',
+            'contact_details.*.address' => 'required|string|max:255',
+            'contact_details.*.postal_code' => 'nullable|string|max:20',
+            'contact_details.*.phone_number' => 'nullable|string|max:20',
+            'contact_details.*.mobile_number' => 'nullable|string|max:20',
+            'contact_details.*.is_primary' => 'boolean',
         ];
     }
 }
