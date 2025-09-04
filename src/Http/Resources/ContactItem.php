@@ -3,6 +3,7 @@
 namespace Companue\Contacts\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Companue\Contacts\Http\Resources\ContactDetailItem;
 
 class ContactItem extends JsonResource
 {
@@ -26,7 +27,7 @@ class ContactItem extends JsonResource
             'creator_id' => $this->creator_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            // Add more fields as needed
+            'details' => ContactDetailItem::collection($this->details),
         ];
     }
 }
