@@ -9,6 +9,11 @@ class PackageServiceProvider extends ServiceProvider
 {
     public function boot()
     {
+        // Load package routes
+        if (file_exists($routes = $this->basePath('routes/api.php'))) {
+            $this->loadRoutesFrom($routes);
+        }
+
         $this->loadViewsFrom($this->basePath('resources/views/'), 'contacts');
         $this->loadMigrationsFrom($this->basePath('database/migrations'));
         $this->loadTranslationsFrom($this->basePath('lang'), 'contacts');
