@@ -18,7 +18,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Companue\\Contacts\\": "src/"
+            "Companue\\Contacts\\": "src/",
+            "Companue\\Contacts\\Database\\Seeders\\": "database/seeders/"
         }
     },
     "autoload-dev": {
