@@ -10,9 +10,9 @@ return new class extends Migration
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
-            $table->string('label');
+            $table->string('label')->nullable();
             $table->string('type'); // customer, vendor, other
-            $table->string('category'); // legal, person
+            $table->string('category')->nullable(); // legal, person
             $table->string('title')->nullable();  // شرکت، موسسه، آقای، خانم
             $table->string('name_firstname')->nullable();
             $table->string('brand_lastname')->nullable();
