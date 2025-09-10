@@ -36,10 +36,6 @@ class ContactTypeSeeder extends Seeder
             if (isset($item['title'])) {
                 $match['title'] = $item['title'];
             }
-            if (empty($match)) {
-                // Fallback to name if neither slug nor title exists
-                $match['name'] = $item['name'] ?? null;
-            }
 
             DB::table('contact_types')->updateOrInsert(
                 $match,

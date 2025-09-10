@@ -1,0 +1,32 @@
+[
+    {
+        "slug": "mr",
+        "title": "Mr.",
+        "official_title": "dear-male"
+    },
+    {
+        "slug": "ms",
+        "title": "Ms.",
+        "official_title": "dear-female"
+    },
+    {
+        "slug": "company",
+        "title": "Company",
+        "official_title": "dear-legal"
+    },
+    {
+        "slug": "institute",
+        "title": "Institute",
+        "official_title": "dear-legal"
+    },
+    {
+        "slug": "store",
+        "title": "Store",
+        "official_title": "dear-legal"
+    },
+    {
+        "slug": "institute",
+        "title": "Institute",
+        "official_title": "dear-legal"
+    }
+]
