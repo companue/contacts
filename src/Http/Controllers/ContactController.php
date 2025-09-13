@@ -16,7 +16,7 @@ class ContactController extends Controller
     public function index()
     {
         $contacts = Contact::all();
-        return Response::json($contacts);
+        return Response::json(ContactDisplayItem::collection($contacts));
     }
 
     public function show($id)
