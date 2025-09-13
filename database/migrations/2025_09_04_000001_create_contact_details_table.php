@@ -11,8 +11,8 @@ return new class extends Migration
         Schema::create('contact_details', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('contact_id');
-            $table->string('detail_title');
-            $table->string('address');
+            $table->string('detail_title')->nullable();
+            $table->string('address')->nullable();
             $table->string('postal_code')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('mobile_number')->nullable();
