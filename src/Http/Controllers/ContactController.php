@@ -29,11 +29,6 @@ class ContactController extends Controller
 
     public function store(ContactStoreRequest $request)
     {
-        // $contact = Contact::create($request->all());
-        // return Response::json([
-        //     'message' => Lang::get('messages.recordـcreated_with_types', ['title' => $contact->id, 'type' => 'مخاطب', 'titletype' => 'شماره']),
-        //     'contact' => new ContactItem($contact)
-        // ]);
 
         $data = $request->all();
         $details = $data['contact_details'] ?? null;
@@ -48,7 +43,7 @@ class ContactController extends Controller
         }
 
         return Response::json([
-            'message' => Lang::get('messages.recordـcreated_with_types', ['title' => $contact->id, 'type' => 'مخاطب', 'titletype' => 'شماره']),
+            'message' => Lang::get('messages.recordـcreated', ['title' => $contact->label]),
             'contact' => new ContactDisplayItem($contact)
         ]);
     }
@@ -58,7 +53,7 @@ class ContactController extends Controller
         $contact = Contact::findOrFail($id);
         $contact->update($request->all());
         return Response::json([
-            'message' => Lang::get('messages.record.updated_with_types', ['title' => $contact->id, 'type' => 'مخاطب', 'titletype' => 'شماره']),
+            'message' => Lang::get('messages.recordـupdated', ['title' => $contact->label]),
             'contact' => new ContactItem($contact)
         ]);
     }
@@ -68,7 +63,7 @@ class ContactController extends Controller
         $contact = Contact::findOrFail($id);
         $contact->delete();
         return Response::json([
-            'message' => Lang::get('messages.recordـdeleted_with_type', ['title' => $contact->id, 'type' => 'مخاطب']),
+            'message' => Lang::get('messages.recordـdeleted', ['title' => $contact->label]),
         ]);
     }
 }
