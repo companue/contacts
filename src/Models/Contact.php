@@ -48,6 +48,7 @@ class Contact extends Model
      */
     protected $casts = [
         'creator_id' => 'integer',
+        'title' => 'integer',
         'deleted_at' => 'datetime',
     ];
 

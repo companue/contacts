@@ -24,10 +24,10 @@ class ContactItem extends JsonResource
             'name_firstname' => $this->name_firstname,
             'brand_lastname' => $this->brand_lastname,
             'national_code' => $this->national_code,
-            'creator_id' => $this->creator_id,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            'details' => ContactDetailItem::collection($this->details),
+            // 'creator_id' => $this->creator_id,
+            // 'created_at' => $this->created_at,
+            // 'updated_at' => $this->updated_at,
+            // 'details' => ContactDetailItem::collection($this->details),
         ];
     }
 }

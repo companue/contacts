@@ -10,8 +10,8 @@ return new class extends Migration
     {
         Schema::create('contact_titles', function (Blueprint $table) {
             $table->id();
-            $table->string('slug')->unique();
-            $table->string('title');
+            $table->string('lang');
+            $table->string('title')->unique();
             $table->string('official_title')->nullable();
             $table->integer('creator_id')->default(0);
             $table->timestamps();

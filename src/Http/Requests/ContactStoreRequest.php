@@ -5,6 +5,8 @@ namespace Companue\Contacts\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Companue\Contacts\Models\ContactTitle;
 
 class ContactStoreRequest extends FormRequest
 {
@@ -37,6 +39,26 @@ class ContactStoreRequest extends FormRequest
             'contact_details.*.mobile_number' => ['nullable', 'regex:/^0\d{10}$/'],
             'contact_details.*.is_primary' => 'boolean',
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $data = $this->all();
+        // Auto-create ContactTitle if title starts with 'new-'
+        if (!empty($data['title']) && strpos($data['title'], 'new-') === 0) {
+            $newTitleValue = substr($data['title'], 4);
+            $contactTitle = ContactTitle::create([
+                'title' => $newTitleValue,
+                'lang' => app()->getLocale(),
+                // 'creator_id' => Auth::id()
+            ]);
+            // Set request title field to the term without 'new-'
+            $this->merge(['title' => (string) $contactTitle->id]);
+        }
+        // Set creator_id to the current authenticated user's id
+        // if (Auth::check()) {
+        //     $this->merge(['creator_id' => Auth::id()]);
+        // }
     }
 
     public function withValidator($validator)

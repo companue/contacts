@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class ContactTitle extends Model
 {
     // protected $table = 'contact_titles';
-    // protected $fillable = ['name', 'slug', 'title'];
+    protected $fillable = ['creator_id', 'lang', 'title'];
 }

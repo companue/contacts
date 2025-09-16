@@ -4,6 +4,7 @@ namespace Companue\Contacts\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use Companue\Contacts\Http\Resources\ContactDetailDisplayItem;
+use Companue\Contacts\Models\ContactTitle;
 
 class ContactDisplayItem extends JsonResource
 {
@@ -18,9 +19,9 @@ class ContactDisplayItem extends JsonResource
         return [
             'id' => $this->id,
             'label' => $this->label,
-            'type' => $this->type,
-            'category' => $this->category,
-            'title' => $this->title,
+            'type' => __("contacts::terms." . $this->type),
+            'category' => $this->category ? __("contacts::terms." . $this->category) : null,
+            'title' => ($title = ContactTitle::find($this->title)) ? $title->title : null,
             'name_firstname' => $this->name_firstname,
             'brand_lastname' => $this->brand_lastname,
             'national_code' => $this->national_code,

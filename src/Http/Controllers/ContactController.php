@@ -27,6 +27,14 @@ class ContactController extends Controller
         ]);
     }
 
+    public function edit($id)
+    {
+        $contact = Contact::findOrFail($id);
+        return Response::json([
+            'contact' => new ContactItem($contact)
+        ]);
+    }
+
     public function store(ContactStoreRequest $request)
     {
 
@@ -54,7 +62,7 @@ class ContactController extends Controller
         $contact->update($request->all());
         return Response::json([
             'message' => Lang::get('messages.recordـupdated', ['title' => $contact->label]),
-            'contact' => new ContactItem($contact)
+            'contact' => new ContactDisplayItem($contact)
         ]);
     }
 

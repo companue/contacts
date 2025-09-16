@@ -9,8 +9,8 @@ class DropdownContactTitleItem extends JsonResource
     public function toArray($request)
     {
         return [
-            'value' => $this->slug,
-            'label' => __('contacts::contact_titles.' . $this->title),
+            'value' => $this->id,
+            'label' =>  $this->title,
         ];
     }
 }
