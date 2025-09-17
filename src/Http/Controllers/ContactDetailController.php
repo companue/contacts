@@ -7,6 +7,7 @@ use Companue\Contacts\Models\ContactDetail;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Companue\Contacts\Http\Resources\ContactDetailItem;
+use Illuminate\Support\Facades\Lang;
 
 class ContactDetailController extends Controller
 {
@@ -29,7 +30,7 @@ class ContactDetailController extends Controller
     {
         $detail = ContactDetail::create($request->all());
         return response()->json([
-            'message' => __('messages.recordـcreated_with_types', ['title' => $detail->id, 'type' => 'جزئیات مخاطب', 'titletype' => 'شماره']),
+            'message' => Lang::get('messages.recordـcreated', ['title' => __('contacts::terms.contact_detail')]),
             'contact_detail' => new ContactDetailItem($detail)
         ]);
     }
@@ -39,7 +40,7 @@ class ContactDetailController extends Controller
         $detail = ContactDetail::findOrFail($id);
         $detail->update($request->all());
         return response()->json([
-            'message' => __('messages.record.updated_with_types', ['title' => $detail->id, 'type' => 'جزئیات مخاطب', 'titletype' => 'شماره']),
+            'message' => Lang::get_('messages.recordـupdated', ['title' => __('contacts::terms.contact_detail')]),
             'contact_detail' => new ContactDetailItem($detail)
         ]);
     }
@@ -49,7 +50,7 @@ class ContactDetailController extends Controller
         $detail = ContactDetail::findOrFail($id);
         $detail->delete();
         return response()->json([
-            'message' => __('messages.recordـdeleted_with_type', ['title' => $detail->id, 'type' => 'جزئیات مخاطب']),
+            'message' => Lang::get('messages.recordـdeleted', ['title' => __('contacts::terms.contact_detail')]),
         ]);
     }
 }

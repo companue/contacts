@@ -3,6 +3,7 @@
 return [
     'contact' => 'شخص',
     'contact_info' => 'اطلاعات شخص',
+    'contact_detail' => 'جزئیات تماس',
     'customer' => 'مشتری',
     'vendor' => 'تأمین‌کننده',
     'colleague' => 'همکار',
