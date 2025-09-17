@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'Customer' => 'مشتری',
-    'Vendor' => 'فروشنده',
-    'Colleague' => 'همکار',
+    'customer' => 'مشتری',
+    'vendor' => 'تأمین‌کننده',
+    'colleague' => 'همکار',
     // Add more as needed
 ];
