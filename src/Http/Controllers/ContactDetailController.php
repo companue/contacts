@@ -28,7 +28,13 @@ class ContactDetailController extends Controller
 
     public function store(ContactDetailStoreRequest $request)
     {
-        $detail = ContactDetail::create($request->all());
+        $data = $request->all();
+        // Ensure only one is_primary per contact_id
+        if (!empty($data['is_primary']) && !empty($data['contact_id'])) {
+            ContactDetail::where('contact_id', $data['contact_id'])->update(['is_primary' => false]);
+            $data['is_primary'] = true;
+        }
+        $detail = ContactDetail::create($data);
         return response()->json([
             'message' => Lang::get('messages.recordـcreated', ['title' => __('contacts::terms.contact_detail')]),
             'contact_detail' => new ContactDetailItem($detail)
@@ -38,9 +44,16 @@ class ContactDetailController extends Controller
     public function update(ContactDetailStoreRequest $request, $id)
     {
         $detail = ContactDetail::findOrFail($id);
-        $detail->update($request->all());
+        $data = $request->except(['contact_id']);
+        $contactId = $detail->contact_id;
+        // Ensure only one is_primary per contact_id
+        if (!empty($data['is_primary']) && $data['is_primary'] && !empty($contactId)) {
+            ContactDetail::where('contact_id', $contactId)->where('id', '!=', $detail->id)->update(['is_primary' => false]);
+            $data['is_primary'] = true;
+        }
+        $detail->update($data);
         return response()->json([
-            'message' => Lang::get_('messages.recordـupdated', ['title' => __('contacts::terms.contact_detail')]),
+            'message' => Lang::get('messages.recordـupdated', ['title' => __('contacts::terms.contact_detail')]),
             'contact_detail' => new ContactDetailItem($detail)
         ]);
     }
