@@ -16,11 +16,22 @@ class ContactDisplayItem extends JsonResource
      */
     public function toArray($request)
     {
+        // Handle type as comma-separated list and translate
+        $typeList = [];
+        $typeTranslated = [];
+        if (!empty($this->type)) {
+            $typeList = array_map('trim', explode(',', $this->type));
+            $typeTranslated = array_map(function ($type) {
+                return __("contacts::contact_types." . $type);
+            }, $typeList);
+        }
+
         return [
             'id' => $this->id,
             'label' => $this->label,
-            'type' => __("contacts::terms." . $this->type),
-            'category' => $this->category ? __("contacts::terms." . $this->category) : null,
+            // 'type' => $typeList,
+            'type' => $typeTranslated,
+            'category' => $this->category ? __("contacts::contact_categories." . $this->category) : null,
             'title' => ($title = ContactTitle::find($this->title)) ? $title->title : null,
             'name_firstname' => $this->name_firstname,
             'brand_lastname' => $this->brand_lastname,
