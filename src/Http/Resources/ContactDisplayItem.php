@@ -46,6 +46,7 @@ class ContactDisplayItem extends JsonResource
             'creator_id' => $this->creator_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+            '_resource' => ContactItem::make($this),
             // 'details' => ContactDetailDisplayItem::collection($this->details),
         ];
     }
