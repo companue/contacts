@@ -3,8 +3,8 @@
 namespace Companue\Contacts\Http\Controllers;
 
 use Companue\Contacts\Http\Requests\ContactStoreRequest;
+use Companue\Contacts\Http\Resources\ContactDetailItem;
 use Companue\Contacts\Models\Contact;
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Companue\Contacts\Http\Resources\ContactDisplayItem;
 use Companue\Contacts\Http\Resources\ContactItem;
@@ -24,6 +24,14 @@ class ContactController extends Controller
         $contact = Contact::findOrFail($id);
         return Response::json([
             'contact' => new ContactDisplayItem($contact)
+        ]);
+    }
+
+    public function details($id)
+    {
+        $contact = Contact::findOrFail($id);
+        return response()->json([
+            'contact_details' => ContactDetailItem::collection($contact->details)
         ]);
     }
 

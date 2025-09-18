@@ -16,6 +16,7 @@ Route::prefix('contact_details')->group(function () {
 Route::prefix('contact')->group(function () {
     Route::get('/', [ContactController::class, 'index']);
     Route::get('{id}', [ContactController::class, 'show']);
+    Route::get('/details/{id}', [ContactController::class, 'details']);
     Route::get('edit/{id}', [ContactController::class, 'edit']);
     Route::post('/', [ContactController::class, 'store']);
     Route::put('{id}', [ContactController::class, 'update']);
