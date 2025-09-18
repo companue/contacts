@@ -93,4 +93,10 @@ class Contact extends Model
 
         return $contact;
     }
+
+    public function getLabelAttribute($value)
+    {
+        // TODO grammertize must be implemented for non-farsi languages
+        return $value ?: (($title = ContactTitle::find($this->title)) ? $title->title . ' ' : '')  . $this->name_firstname . ' ' . $this->brand_lastname;
+    }
 }
