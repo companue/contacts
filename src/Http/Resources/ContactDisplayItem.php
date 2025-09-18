@@ -4,7 +4,9 @@ namespace Companue\Contacts\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use Companue\Contacts\Http\Resources\ContactDetailDisplayItem;
+use Companue\Contacts\Models\ContactCategory;
 use Companue\Contacts\Models\ContactTitle;
+use Companue\Contacts\Models\ContactType;
 
 class ContactDisplayItem extends JsonResource
 {
@@ -21,8 +23,13 @@ class ContactDisplayItem extends JsonResource
         $typeTranslated = [];
         if (!empty($this->type)) {
             $typeList = array_map('trim', explode(',', $this->type));
-            $typeTranslated = array_map(function ($type) {
-                return __("contacts::contact_types." . $type);
+            $typeTranslated = array_map(function ($slug) {
+                $typeModel = ContactType::where('slug', $slug)->first();
+                if ($typeModel) {
+                    // Use translation if available, fallback to title
+                    return __("contacts::contact_types." . $typeModel->title);
+                }
+                return $slug;
             }, $typeList);
         }
 
@@ -31,7 +38,7 @@ class ContactDisplayItem extends JsonResource
             'label' => $this->label,
             // 'type' => $typeList,
             'type' => $typeTranslated,
-            'category' => $this->category ? __("contacts::contact_categories." . $this->category) : null,
+            'category' => $this->category ? __("contacts::contact_categories." . ContactCategory::where('slug', $this->category)->sole()->title) : null,
             'title' => ($title = ContactTitle::find($this->title)) ? $title->title : null,
             'name_firstname' => $this->name_firstname,
             'brand_lastname' => $this->brand_lastname,
@@ -39,7 +46,7 @@ class ContactDisplayItem extends JsonResource
             'creator_id' => $this->creator_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'details' => ContactDetailDisplayItem::collection($this->details),
+            // 'details' => ContactDetailDisplayItem::collection($this->details),
         ];
     }
 }
