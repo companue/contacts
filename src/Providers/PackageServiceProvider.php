@@ -44,11 +44,24 @@ class PackageServiceProvider extends ServiceProvider
             $this->basePath('resources/static') => public_path('vendor/contacts'),
         ], 'contacts-assets');
 
+        // Publish system-package folder
+        $this->publishes([
+            $this->basePath('storage/system-package') => storage_path('system/contacts'),
+        ], 'contacts-system-package');
+
         if ($this->app->runningInConsole()) {
             $this->commands([
                 // ConsoleCommand::class,
             ]);
         }
+
+        // Publish system-package files to storage/system/packages/contacts
+        $systemPackagePath = $this->basePath('storage/system-package');
+        $publishFiles = [];
+        foreach (glob($systemPackagePath . '/*') as $file) {
+            $publishFiles[$file] = storage_path('system/packages/contacts/' . basename($file));
+        }
+        $this->publishes($publishFiles, 'contacts-system-package');
     }
 
     public function register()
