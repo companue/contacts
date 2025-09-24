@@ -1,0 +1,13 @@
+[
+    {
+        "slug": "contacts-panel",
+        "title": {
+            "fa": "پنل مدیریت اشخاص",
+            "en": "Contacts Panel"
+        },
+        "activation": true,
+        "requiredRights": [
+            "access-contacts-panel"
+        ]
+    }
+]

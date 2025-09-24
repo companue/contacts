@@ -1,0 +1,90 @@
+[
+    {
+        "slug": "access-contacts-panel",
+        "title": {
+            "fa": "دسترسی به پنل مدیریت اشخاص",
+            "en": "Access Contacts Panel"
+        },
+        "activation": true,
+        "childrights": [
+            {
+                "slug": "use-contacts-management-tool",
+                "title": {
+                    "fa": "استفاده از ابزار مدیریت اشخاص",
+                    "en": "Use Contacts Management Tool"
+                },
+                "activation": true,
+                "childrights": [
+                    {
+                        "slug": "perform-view-contact",
+                        "title": {
+                            "fa": "مشاهده شخص",
+                            "en": "View Contact"
+                        },
+                        "activation": true,
+                        "childrights": [
+                            {
+                                "slug": "perform-edit-contact",
+                                "title": {
+                                    "fa": "ویرایش شخص",
+                                    "en": "Edit Contact"
+                                },
+                                "activation": true
+                            },
+                            {
+                                "slug": "perform-add-contact-details",
+                                "title": {
+                                    "fa": "افزودن جزئیات شخص",
+                                    "en": "Add Contact Details"
+                                },
+                                "activation": true
+                            },
+                            {
+                                "slug": "perform-edit-contact-details",
+                                "title": {
+                                    "fa": "ویرایش جزئیات شخص",
+                                    "en": "Edit Contact Details"
+                                },
+                                "activation": true
+                            },
+                            {
+                                "slug": "perform-delete-contact-details",
+                                "title": {
+                                    "fa": "حذف جزئیات شخص",
+                                    "en": "Delete Contact Details"
+                                },
+                                "activation": true
+                            }
+                        ]
+                    },
+                    {
+                        "slug": "perform-delete-contact",
+                        "title": {
+                            "fa": "حذف شخص",
+                            "en": "Delete Contact"
+                        },
+                        "activation": true
+                    }
+                ]
+            },
+            {
+                "slug": "use-new-contact-tool",
+                "title": {
+                    "fa": "استفاده از ابزار درج اشخاص",
+                    "en": "Use New Contact Tool"
+                },
+                "activation": true,
+                "childrights": [
+                    {
+                        "slug": "perform-create-contact",
+                        "title": {
+                            "fa": "درج شخص",
+                            "en": "Create Contact"
+                        },
+                        "activation": true
+                    }
+                ]
+            }
+        ]
+    }
+]

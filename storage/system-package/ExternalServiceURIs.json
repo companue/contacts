@@ -1,0 +1,80 @@
+[
+    {
+        "external_service": "Set_Service_Name_Here",
+        "right_slug": "use-contacts-management-tool",
+        "method": "GET",
+        "uri": "contact/"
+    },
+    {
+        "external_service": "Set_Service_Name_Here",
+        "right_slug": "perform-view-contact",
+        "method": "GET",
+        "uri": "contact/{id}"
+    },
+    {
+        "external_service": "Set_Service_Name_Here",
+        "right_slug": "perform-view-contact",
+        "method": "GET",
+        "uri": "contact/details/{id}"
+    },
+    {
+        "external_service": "Set_Service_Name_Here",
+        "right_slug": "perform-edit-contact",
+        "method": "GET",
+        "uri": "contact/edit/{id}"
+    },
+    {
+        "external_service": "Set_Service_Name_Here",
+        "right_slug": "perform-create-contact",
+        "method": "POST",
+        "uri": "contact/"
+    },
+    {
+        "external_service": "Set_Service_Name_Here",
+        "right_slug": "perform-edit-contact",
+        "method": "PUT",
+        "uri": "contact/{id}"
+    },
+    {
+        "external_service": "Set_Service_Name_Here",
+        "right_slug": "perform-delete-contact",
+        "method": "DELETE",
+        "uri": "contact/{id}"
+    },
+    {
+        "external_service": "Set_Service_Name_Here",
+        "right_slug": "perform-view-contact",
+        "method": "GET",
+        "uri": "contact_details/"
+    },
+    {
+        "external_service": "Set_Service_Name_Here",
+        "right_slug": "perform-view-contact",
+        "method": "GET",
+        "uri": "contact_details/{id}"
+    },
+    {
+        "external_service": "Set_Service_Name_Here",
+        "right_slug": "perform-edit-contact-details",
+        "method": "GET",
+        "uri": "contact_details/edit/{id}"
+    },
+    {
+        "external_service": "Set_Service_Name_Here",
+        "right_slug": "perform-add-contact-details",
+        "method": "POST",
+        "uri": "contact_details/"
+    },
+    {
+        "external_service": "Set_Service_Name_Here",
+        "right_slug": "perform-edit-contact-details",
+        "method": "PUT",
+        "uri": "contact_details/{id}"
+    },
+    {
+        "external_service": "Set_Service_Name_Here",
+        "right_slug": "perform-delete-contact-details",
+        "method": "DELETE",
+        "uri": "contact_details/{id}"
+    }
+]

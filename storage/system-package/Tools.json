@@ -1,0 +1,28 @@
+[
+    {
+        "panel": "contacts-panel",
+        "slug": "contacts-management-tool",
+        "title": {
+            "fa": "ابزار مدیریت اشخاص",
+            "en": "Contacts Management Tool"
+        },
+        "activation": true,
+        "state": "installed",
+        "requiredRights": [
+            "use-contacts-management-tool"
+        ]
+    },
+    {
+        "panel": "contacts-panel",
+        "slug": "new-contact-tool",
+        "title": {
+            "fa": "ابزار درج اشخاص",
+            "en": "New Contact Tool"
+        },
+        "activation": true,
+        "state": "installed",
+        "requiredRights": [
+            "use-new-contact-tool"
+        ]
+    }
+]

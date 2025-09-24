@@ -1,0 +1,96 @@
+[
+    {
+        "tool": "contacts-management-tool",
+        "operation": [
+            {
+                "slug": "contact-view-operation",
+                "title": {
+                    "fa": "مشاهده شخص",
+                    "en": "View contact"
+                },
+                "activation": true,
+                "state": "installed",
+                "requiredRights": [
+                    "perform-view-contact"
+                ]
+            },
+            {
+                "slug": "contact-edit-operation",
+                "title": {
+                    "fa": "ویرایش شخص",
+                    "en": "Edit contact"
+                },
+                "activation": true,
+                "state": "installed",
+                "requiredRights": [
+                    "perform-edit-contact"
+                ]
+            },
+            {
+                "slug": "contact-delete-operation",
+                "title": {
+                    "fa": "حذف شخص",
+                    "en": "Delete contact"
+                },
+                "activation": true,
+                "state": "installed",
+                "requiredRights": [
+                    "perform-delete-contact"
+                ]
+            },
+            {
+                "slug": "contact-detail-add-operation",
+                "title": {
+                    "fa": "افزودن جزئیات شخص",
+                    "en": "Add contact details"
+                },
+                "activation": true,
+                "state": "installed",
+                "requiredRights": [
+                    "perform-add-contact-details"
+                ]
+            },
+            {
+                "slug": "contact-detail-edit-operation",
+                "title": {
+                    "fa": "ویرایش جزئیات شخص",
+                    "en": "Edit contact details"
+                },
+                "activation": true,
+                "state": "installed",
+                "requiredRights": [
+                    "perform-edit-contact-details"
+                ]
+            },
+            {
+                "slug": "contact-detail-delete-operation",
+                "title": {
+                    "fa": "حذف جزئیات شخص",
+                    "en": "Delete contact details"
+                },
+                "activation": true,
+                "state": "installed",
+                "requiredRights": [
+                    "perform-delete-contact-details"
+                ]
+            }
+        ]
+    },
+    {
+        "tool": "new-contact-tool",
+        "operation": [
+            {
+                "slug": "contact-create-operation",
+                "title": {
+                    "fa": "درج شخص",
+                    "en": "Add contact"
+                },
+                "activation": true,
+                "state": "installed",
+                "requiredRights": [
+                    "perform-create-contact"
+                ]
+            }
+        ]
+    }
+]
