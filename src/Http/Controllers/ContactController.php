@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Response;
 
 class ContactController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum');
+    }
+
     public function index()
     {
         $contacts = Contact::all();
