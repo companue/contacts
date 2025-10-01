@@ -18,6 +18,8 @@ class ContactDisplayItem extends JsonResource
      */
     public function toArray($request)
     {
+        // return parent::toArray($request);
+
         // Handle type as comma-separated list and translate
         $typeList = [];
         $typeTranslated = [];
@@ -43,6 +45,8 @@ class ContactDisplayItem extends JsonResource
             'name_firstname' => $this->name_firstname,
             'brand_lastname' => $this->brand_lastname,
             'national_code' => $this->national_code,
+            'is_incomplete' => $this->is_incomplete,
+            'has_details' => $this->has_details,
             'creator_id' => $this->creator_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

@@ -6,23 +6,23 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-/**
- * Class Contact
- *
- * @property int $id
- * @property string|null $type
- * @property string|null $title
- * @property string $label
- * @property int|null $creator_id
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
- * @property \Carbon\Carbon|null $deleted_at
- *
- * @property \Illuminate\Database\Eloquent\Collection|\Companue\Contacts\Models\ContactDetail[] $details
- */
-
 class Contact extends Model
 {
+    /**
+     * Class Contact
+     *
+     * @property int $id
+     * @property string|null $type
+     * @property string|null $title
+     * @property string $label
+     * @property int|null $creator_id
+     * @property \Carbon\Carbon|null $created_at
+     * @property \Carbon\Carbon|null $updated_at
+     * @property \Carbon\Carbon|null $deleted_at
+     *
+     * @property \Illuminate\Database\Eloquent\Collection|\Companue\Contacts\Models\ContactDetail[] $details
+     */
+
     use HasFactory, SoftDeletes;
 
     /**
@@ -50,8 +50,11 @@ class Contact extends Model
         'creator_id' => 'integer',
         'title' => 'integer',
         'deleted_at' => 'datetime',
+        'is_incomplete' => 'boolean',
+        'has_details' => 'boolean',
     ];
 
+    protected $appends = ['is_incomplete', 'has_details'];
 
     /**
      * Get the contact details for the contact.
@@ -98,5 +101,34 @@ class Contact extends Model
     {
         // TODO grammertize must be implemented for non-farsi languages
         return $value ?: (($title = ContactTitle::find($this->title)) ? $title->title . ' ' : '')  . $this->name_firstname . ' ' . $this->brand_lastname;
+    }
+
+    /**
+     * Get the incomplete info flag for the contact.
+     *
+     * @return bool
+     */
+    public function getIsIncompleteAttribute()
+    {
+        if (empty($this->category) || empty($this->national_code)) {
+            return true;
+        }
+        if ($this->category === 'legal' && empty($this->name_firstname)) {
+            return true;
+        }
+        if ($this->category === 'real' && empty($this->brand_lastname)) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Get the has details flag for the contact.
+     *
+     * @return bool
+     */
+    public function getHasDetailsAttribute()
+    {
+        return $this->details()->count() > 0;
     }
 }
