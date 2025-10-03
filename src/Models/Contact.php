@@ -131,4 +131,14 @@ class Contact extends Model
     {
         return $this->details()->count() > 0;
     }
+
+    /**
+     * Get the current default ContactDetail entry (where is_primary is true).
+     *
+     * @return ContactDetail|null
+     */
+    public function getDefaultDetailAttribute()
+    {
+        return $this->details()->where('is_primary', true)->sole();
+    }
 }
