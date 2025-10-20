@@ -139,6 +139,6 @@ class Contact extends Model
      */
     public function getDefaultDetailAttribute()
     {
-        return $this->details()->where('is_primary', true)->sole();
+        return $this->details()->where('is_primary', true)->first();
     }
 }
