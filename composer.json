@@ -1,6 +1,8 @@
 {
     "name": "companue/contacts",
-    "description": "This is a companue package for managing contacts including customers, vendors, and any other.",
+    "description": "Laravel package for managing contacts including customers, vendors, and other contact types with multilingual support",
+    "keywords": ["laravel", "contacts", "customers", "vendors", "companue", "multilingual"],
+    "homepage": "https://github.com/companue/contacts",
     "type": "library",
     "license": "MIT",
     "authors": [
