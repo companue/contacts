@@ -54,6 +54,9 @@ class ContactStoreRequest extends FormRequest
             ]);
             // Set request title field to the term without 'new-'
             $this->merge(['title' => (string) $contactTitle->id]);
+        } elseif (!empty($data['title']) && is_int($data['title'])) {
+            // Convert integer title ID to string
+            $this->merge(['title' => (string) $data['title']]);
         }
         // Set creator_id to the current authenticated user's id
         // if (Auth::check()) {
