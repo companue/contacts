@@ -34,11 +34,12 @@ class ContactDetailController extends Controller
     public function store(ContactDetailStoreRequest $request)
     {
         $data = $request->all();
-        // Ensure only one is_primary per contact_id
-        if (!empty($data['is_primary']) && !empty($data['contact_id'])) {
-            ContactDetail::where('contact_id', $data['contact_id'])->update(['is_primary' => false]);
-            $data['is_primary'] = true;
-        }
+        $contactId = $data['contact_id'] ?? null;
+
+        // Let the model decide whether this new detail should be primary and
+        // normalize `is_primary` and existing records accordingly.
+        ContactDetail::selectPrimaryForCreate($contactId, $data);
+
         $detail = ContactDetail::create($data);
         return response()->json([
             'message' => Lang::get('messages.recordـcreated', ['title' => __('terms.contact_detail')]),
