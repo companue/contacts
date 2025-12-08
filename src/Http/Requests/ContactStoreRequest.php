@@ -74,10 +74,10 @@ class ContactStoreRequest extends FormRequest
             $contactId = optional($this->route('contact'))->id ?? $this->route('contact') ?? $this->route('id');
             if ($nationalCode) {
                 if ($category === 'legal' && !preg_match('/^\d{11}$/', $nationalCode)) {
-                    $validator->errors()->add('national_code', __('contacts::validation.national_code_legal'));
+                    $validator->errors()->add('national_code', __('validation.national_code_legal'));
                 }
                 if ($category === 'real' && !preg_match('/^\d{10}$/', $nationalCode)) {
-                    $validator->errors()->add('national_code', __('contacts::validation.national_code_real'));
+                    $validator->errors()->add('national_code', __('validation.national_code_real'));
                 }
                 // Custom unique check for national_code
                 $query = DB::table('contacts')->where('national_code', $nationalCode);
@@ -85,8 +85,8 @@ class ContactStoreRequest extends FormRequest
                     $query->where('id', '!=', $contactId);
                 }
                 if ($query->exists()) {
-                    $attribute = $category === 'legal' ? __('contacts::validation.attributes.national_code_legal') : __('contacts::validation.attributes.national_code_real');
-                    $validator->errors()->add('national_code', __('contacts::validation.unique', ['attribute' => $attribute]));
+                    $attribute = $category === 'legal' ? __('validation.attributes.national_code_legal') : __('validation.attributes.national_code_real');
+                    $validator->errors()->add('national_code', __('validation.unique', ['attribute' => $attribute]));
                 }
             }
         });

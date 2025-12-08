@@ -18,7 +18,7 @@ class DropdownContactTypeItem extends JsonResource
         // return parent::toArray($request);
         return [
             'value' => $this->slug,
-            'label' => __('contacts::contact_types.' . $this->title),
+            'label' => __('contact_types.' . $this->title),
         ];
     }
 }

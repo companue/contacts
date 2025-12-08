@@ -16,7 +16,7 @@ class PackageServiceProvider extends ServiceProvider
 
         $this->loadViewsFrom($this->basePath('resources/views/'), 'contacts');
         $this->loadMigrationsFrom($this->basePath('database/migrations'));
-        $this->loadTranslationsFrom($this->basePath('lang'), 'contacts');
+        $this->loadTranslationsFrom($this->basePath('lang'), null);
         $this->loadJsonTranslationsFrom($this->basePath('lang/json'));
 
         // Publish migrations

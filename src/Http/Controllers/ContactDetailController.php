@@ -41,7 +41,7 @@ class ContactDetailController extends Controller
         }
         $detail = ContactDetail::create($data);
         return response()->json([
-            'message' => Lang::get('messages.recordـcreated', ['title' => __('contacts::terms.contact_detail')]),
+            'message' => Lang::get('messages.recordـcreated', ['title' => __('terms.contact_detail')]),
             'contact_detail' => new ContactDetailItem($detail)
         ]);
     }
@@ -58,7 +58,7 @@ class ContactDetailController extends Controller
         }
         $detail->update($data);
         return response()->json([
-            'message' => Lang::get('messages.recordـupdated', ['title' => __('contacts::terms.contact_detail')]),
+            'message' => Lang::get('messages.recordـupdated', ['title' => __('terms.contact_detail')]),
             'contact_detail' => new ContactDetailItem($detail)
         ]);
     }
@@ -68,7 +68,7 @@ class ContactDetailController extends Controller
         $detail = ContactDetail::findOrFail($id);
         $detail->delete();
         return response()->json([
-            'message' => Lang::get('messages.recordـdeleted', ['title' => __('contacts::terms.contact_detail')]),
+            'message' => Lang::get('messages.recordـdeleted', ['title' => __('terms.contact_detail')]),
         ]);
     }
 }

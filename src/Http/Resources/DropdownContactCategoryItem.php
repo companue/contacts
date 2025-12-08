@@ -10,7 +10,7 @@ class DropdownContactCategoryItem extends JsonResource
     {
         return [
             'value' => $this->slug,
-            'label' => __('contacts::contact_categories.' . $this->title),
+            'label' => __('contact_categories.' . $this->title),
         ];
     }
 }
