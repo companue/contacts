@@ -29,7 +29,7 @@ class ContactDisplayItem extends JsonResource
                 $typeModel = ContactType::where('slug', $slug)->first();
                 if ($typeModel) {
                     // Use translation if available, fallback to title
-                    return __("contacts::contact_types." . $typeModel->title);
+                    return __("contact_types." . $typeModel->title);
                 }
                 return $slug;
             }, $typeList);
@@ -40,7 +40,7 @@ class ContactDisplayItem extends JsonResource
             'label' => $this->label,
             // 'type' => $typeList,
             'type' => $typeTranslated,
-            'category' => $this->category ? __("contacts::contact_categories." . ContactCategory::where('slug', $this->category)->sole()->title) : null,
+            'category' => $this->category ? __("contact_categories." . ContactCategory::where('slug', $this->category)->sole()->title) : null,
             'title' => ($title = ContactTitle::find($this->title)) ? $title->title : null,
             'name_firstname' => $this->name_firstname,
             'brand_lastname' => $this->brand_lastname,
