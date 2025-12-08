@@ -52,9 +52,32 @@ class ContactDetailController extends Controller
         $detail = ContactDetail::findOrFail($id);
         $data = $request->except(['contact_id']);
         $contactId = $detail->contact_id;
-        // Ensure only one is_primary per contact_id
-        if (!empty($data['is_primary']) && $data['is_primary'] && !empty($contactId)) {
-            ContactDetail::where('contact_id', $contactId)->where('id', '!=', $detail->id)->update(['is_primary' => false]);
+        // If the request attempts to set this detail as primary, ensure the
+        // detail is primable (may be primable after applying $data updates).
+        $attemptsToSetPrimary = isset($data['is_primary']) && $data['is_primary'];
+
+        if ($attemptsToSetPrimary) {
+            // Build the prospective attributes as if the update applied, so
+            // `isPrimable` can evaluate against the new state.
+            $prospective = array_merge($detail->toArray(), $data);
+
+            if (! ContactDetail::isPrimable($prospective)) {
+                // Save other received data but do not set this detail as primary.
+                unset($data['is_primary']);
+                $detail->update($data);
+
+                return response()->json([
+                    'message' => Lang::get('updated_messages.contact_detail_not_primable'),
+                    'contact_detail' => new ContactDetailItem($detail->fresh()),
+                    'type' => 'warning',
+                ]);
+            }
+
+            // Ensure only one is_primary per contact_id
+            if (! empty($contactId)) {
+                ContactDetail::where('contact_id', $contactId)->where('id', '!=', $detail->id)->update(['is_primary' => false]);
+            }
+
             $data['is_primary'] = true;
         }
         $detail->update($data);
