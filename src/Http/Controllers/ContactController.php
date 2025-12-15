@@ -10,18 +10,23 @@ use Companue\Contacts\Http\Resources\ContactDisplayItem;
 use Companue\Contacts\Http\Resources\ContactItem;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Response;
+use Companue\AutoPaginate\Traits\PaginatesQueries;
 
 class ContactController extends Controller
 {
+    use PaginatesQueries;
+    
     public function __construct()
     {
         $this->middleware('auth:sanctum');
     }
 
-    public function index()
+    public function index(\Illuminate\Http\Request $request)
     {
-        $contacts = Contact::all();
-        return Response::json(ContactDisplayItem::collection($contacts));
+        $query = Contact::query();
+        return Response::json(
+            $this->indexResponse($query, ContactDisplayItem::class, $request)
+        );
     }
 
     public function show($id)
